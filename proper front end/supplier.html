@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers & Materials - BulkBuy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-full">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <i class="fas fa-users text-2xl text-indigo-600 mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800 hidden sm:inline">BulkBuy</span>
+                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <a href="dashboard.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Dashboard</a>
+                            <a href="group.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">My Groups</a>
+                            <a href="suppliers.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Suppliers & Materials</a>
+                        </div>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                        <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                        <div class="ml-3 relative">
+                            <div>
+                                <button id="user-menu" class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-2xl font-bold text-gray-800">Suppliers & Materials</h1>
+                <div class="relative w-64">
+                    <input type="text" id="supplierSearch" placeholder="Search suppliers..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Materials Cart -->
+            <div class="bg-white p-6 rounded-xl shadow-sm mb-8 border border-gray-100">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                        <i class="fas fa-shopping-cart text-indigo-600 mr-3"></i> Selected Materials
+                    </h2>
+                    <div>
+                        <span id="cartCount" class="bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">0 items</span>
+                        <button id="createGroupBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <i class="fas fa-users mr-1"></i> Create Group with Selected
+                        </button>
+                    </div>
+                </div>
+
+                <div id="materialsCart" class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="text-center py-4 text-gray-400" id="noMaterialsMessage">
+                        <i class="fas fa-shopping-basket text-3xl mb-2"></i>
+                        <p>No materials selected yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suppliers List -->
+            <div class="space-y-6">
+                <!-- Supplier 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-gray-50">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Supplier" class="w-12 h-12 rounded-full border-2 border-white shadow-sm">
+                                <div class="ml-4">
+                                    <h3 class="font-bold text-lg">Fresh Farms Co.</h3>
+                                    <p class="text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> 5km away • ★★★★☆ (24 reviews)</p>
+                                </div>
+                            </div>
+                            <button class="text-indigo-600 hover:text-indigo-800">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h4 class="font-medium text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-carrot text-orange-500 mr-2"></i> Vegetables
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Product 1 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h5 class="font-medium">Fresh Tomatoes</h5>
+                                        <p class="text-sm text-gray-500">₹80/kg</p>
+                                    </div>
+                                    <button class="add-to-cart-btn text-green-600 hover:text-green-800" data-id="veg1" data-name="Fresh Tomatoes" data-price="80" data-category="vegetables" data-supplier="Fresh Farms Co.">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2 flex justify-between items-center">
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">In Stock</span>
+                                    <span class="text-xs text-gray-500">Min: 10kg</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Product 2 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h5 class="font-medium">Organic Onions</h5>
+                                        <p class="text-sm text-gray-500">₹40/kg</p>
+                                    </div>
+                                    <button class="add-to-cart-btn text-green-600 hover:text-green-800" data-id="veg2" data-name="Organic Onions" data-price="40" data-category="vegetables" data-supplier="Fresh Farms Co.">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2 flex justify-between items-center">
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">In Stock</span>
+                                    <span class="text-xs text-gray-500">Min: 15kg</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Product 3 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h5 class="font-medium">Potatoes</h5>
+                                        <p class="text-sm text-gray-500">₹30/kg</p>
+                                    </div>
+                                    <button class="add-to-cart-btn text-green-600 hover:text-green-800" data-id="veg3" data-name="Potatoes" data-price="30" data-category="vegetables" data-supplier="Fresh Farms Co.">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2 flex justify-between items-center">
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">In Stock</span>
+                                    <span class="text-xs text-gray-500">Min: 20kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supplier 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-gray-50">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Supplier" class="w-12 h-12 rounded-full border-2 border-white shadow-sm">
+                                <div class="ml-4">
+                                    <h3 class="font-bold text-lg">Grain Masters</h3>
+                                    <p class="text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> 8km away • ★★★★☆ (18 reviews)</p>
+                                </div>
+                            </div>
+                            <button class="text-indigo-600 hover:text-indigo-800">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h4 class="font-medium text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-wheat-alt text-amber-500 mr-2"></i> Grains & Flour
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Product 1 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h5 class="font-medium">Wheat Flour</h5>
+                                        <p class="text-sm text-gray-500">₹35/kg</p>
+                                    </div>
+                                    <button class="add-to-cart-btn text-green-600 hover:text-green-800" data-id="grain1" data-name="Wheat Flour" data-price="35" data-category="grains" data-supplier="Grain Masters">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2 flex justify-between items-center">
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">In Stock</span>
+                                    <span class="text-xs text-gray-500">Min: 25kg</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Product 2 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h5 class="font-medium">Basmati Rice</h5>
+                                        <p class="text-sm text-gray-500">₹60/kg</p>
+                                    </div>
+                                    <button class="add-to-cart-btn text-green-600 hover:text-green-800" data-id="grain2" data-name="Basmati Rice" data-price="60" data-category="grains" data-supplier="Grain Masters">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2 flex justify-between items-center">
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">In Stock</span>
+                                    <span class="text-xs text-gray-500">Min: 20kg</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Product 3 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h5 class="font-medium">Sugar</h5>
+                                        <p class="text-sm text-gray-500">₹42/kg</p>
+                                    </div>
+                                    <button class="add-to-cart-btn text-green-600 hover:text-green-800" data-id="grain3" data-name="Sugar" data-price="42" data-category="grains" data-supplier="Grain Masters">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2 flex justify-between items-center">
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">In Stock</span>
+                                    <span class="text-xs text-gray-500">Min: 15kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more suppliers as needed -->
+            </div>
+        </main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const materialsCart = document.getElementById('materialsCart');
+    const noMaterialsMessage = document.getElementById('noMaterialsMessage');
+    const cartCount = document.getElementById('cartCount');
+    const createGroupBtn = document.getElementById('createGroupBtn');
+    const supplierSearch = document.getElementById('supplierSearch');
+    
+    // Selected materials
+    let selectedMaterials = [];
+    
+    // Initialize cart from localStorage
+    function initCart() {
+        const savedCart = localStorage.getItem('supplierMaterialsCart');
+        if (savedCart) {
+            selectedMaterials = JSON.parse(savedCart);
+            updateCart();
+        }
+    }
+    
+    // Update cart display
+    function updateCart() {
+        if (selectedMaterials.length === 0) {
+            noMaterialsMessage.classList.remove('hidden');
+            materialsCart.innerHTML = '';
+            materialsCart.appendChild(noMaterialsMessage);
+            cartCount.textContent = '0 items';
+            createGroupBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            return;
+        }
+        
+        noMaterialsMessage.classList.add('hidden');
+        materialsCart.innerHTML = '';
+        
+        selectedMaterials.forEach((material, index) => {
+            const materialCard = document.createElement('div');
+            materialCard.className = 'border border-gray-200 rounded-lg p-3 flex items-center justify-between';
+            materialCard.innerHTML = `
+                <div class="flex items-center">
+                    <div class="w-10 h-10 ${getMaterialBgClass(material.category)} rounded-full flex items-center justify-center mr-3">
+                        <i class="fas ${getMaterialIcon(material.category)} ${getMaterialTextClass(material.category)}"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-medium text-sm">${material.name}</h5>
+                        <p class="text-xs text-gray-500">${material.supplier} • ₹${material.price}/kg</p>
+                    </div>
+                </div>
+                <button class="remove-from-cart text-red-500 hover:text-red-700" data-index="${index}">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            materialsCart.appendChild(materialCard);
+        });
+        
+        cartCount.textContent = `${selectedMaterials.length} ${selectedMaterials.length === 1 ? 'item' : 'items'}`;
+        createGroupBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
+    
+    // Helper functions for material styling
+    function getMaterialBgClass(category) {
+        const classes = {
+            grains: 'bg-amber-100',
+            dairy: 'bg-blue-100',
+            vegetables: 'bg-green-100',
+            spices: 'bg-red-100',
+            meat: 'bg-rose-100'
+        };
+        return classes[category] || 'bg-gray-100';
+    }
+    
+    function getMaterialTextClass(category) {
+        const classes = {
+            grains: 'text-amber-600',
+            dairy: 'text-blue-600',
+            vegetables: 'text-green-600',
+            spices: 'text-red-600',
+            meat: 'text-rose-600'
+        };
+        return classes[category] || 'text-gray-600';
+    }
+    
+    function getMaterialIcon(category) {
+        const icons = {
+            grains: 'fa-wheat-alt',
+            dairy: 'fa-cheese',
+            vegetables: 'fa-carrot',
+            spices: 'fa-pepper-hot',
+            meat: 'fa-drumstick-bite'
+        };
+        return icons[category] || 'fa-shopping-basket';
+    }
+    
+    // Add to cart functionality
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+            const btn = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
+            const material = {
+                id: btn.dataset.id,
+                name: btn.dataset.name,
+                price: btn.dataset.price,
+                category: btn.dataset.category,
+                supplier: btn.dataset.supplier
+            };
+            
+            // Check if already in cart
+            if (!selectedMaterials.some(item => item.id === material.id)) {
+                selectedMaterials.push(material);
+                localStorage.setItem('supplierMaterialsCart', JSON.stringify(selectedMaterials));
+                updateCart();
+                
+                // Show success message
+                showToast(`${material.name} added to cart`);
+            } else {
+                showToast(`${material.name} is already in cart`, 'warning');
+            }
+        }
+        
+        // Remove from cart
+        if (e.target.classList.contains('remove-from-cart') || e.target.closest('.remove-from-cart')) {
+            const btn = e.target.classList.contains('remove-from-cart') ? e.target : e.target.closest('.remove-from-cart');
+            const index = parseInt(btn.dataset.index);
+            const removedItem = selectedMaterials[index];
+            
+            selectedMaterials.splice(index, 1);
+            localStorage.setItem('supplierMaterialsCart', JSON.stringify(selectedMaterials));
+            updateCart();
+            
+            // Show removed message
+            showToast(`${removedItem.name} removed from cart`, 'info');
+        }
+    });
+    
+    // Create group with selected materials
+    createGroupBtn.addEventListener('click', function() {
+        if (selectedMaterials.length === 0) return;
+        
+        // Save materials to be used in group creation
+        localStorage.setItem('groupCreationMaterials', JSON.stringify(selectedMaterials));
+        
+        // Redirect to group creation page
+        window.location.href = 'group.html?from=suppliers';
+    });
+    
+    // Search functionality
+    supplierSearch.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        document.querySelectorAll('.bg-white.rounded-xl').forEach(supplierCard => {
+            const supplierName = supplierCard.querySelector('h3').textContent.toLowerCase();
+            const products = supplierCard.querySelectorAll('[data-name]');
+            let hasMatch = false;
+            
+            // Check supplier name
+            if (supplierName.includes(searchTerm)) {
+                hasMatch = true;
+            }
+            
+            // Check products
+            products.forEach(product => {
+                const productName = product.dataset.name.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    hasMatch = true;
+                    product.closest('.border').classList.remove('hidden');
+                } else {
+                    product.closest('.border').classList.add('hidden');
+                }
+            });
+            
+            // Show/hide supplier based on matches
+            if (hasMatch) {
+                supplierCard.classList.remove('hidden');
+            } else {
+                supplierCard.classList.add('hidden');
+            }
+        });
+    });
+    
+    // Toast notification
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        const colors = {
+            success: 'bg-green-100 text-green-800',
+            warning: 'bg-yellow-100 text-yellow-800',
+            info: 'bg-blue-100 text-blue-800',
+            error: 'bg-red-100 text-red-800'
+        };
+        
+        toast.className = `fixed bottom-4 right-4 px-4 py-2 rounded-md shadow-md ${colors[type]} flex items-center`;
+        toast.innerHTML = `
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'warning' ? 'fa-exclamation-triangle' : type === 'info' ? 'fa-info-circle' : 'fa-times-circle'} mr-2"></i>
+            ${message}
+        `;
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+    
+    // Initialize
+    initCart();
+});</script>
+</body>
+</html>
